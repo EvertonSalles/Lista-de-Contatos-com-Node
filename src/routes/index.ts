@@ -6,14 +6,13 @@ const router = express.Router();
 router.post('/contato', async (req, res) => {
     const { name } = req.body;
     if(!name || name.length < 2){
-        res.json({ error: 'Nome precisa ter pelo meos 2 caracteres.'});//se der errado, ja vai parar por aqui
+        res.json({ error: 'Nome precisa ter pelo meos 2 caracteres.'});
         return
     }
-    //processamento dos dados
-
+ 
 await createContact(name);
     res.status(201).json({ contato: name});
-});//metodo post, usa o status 202 para mostrar que deu certo
+});
 
 router.get('/contatos', async (req, res) =>{
   let list = await getContacts();
@@ -30,7 +29,7 @@ router.delete('/contato', async (req, res) =>{
       await deleteContact(name as string);
 
       res.json({contato: name});
-});//para apagar o nome de um array
+});
 
 
 
